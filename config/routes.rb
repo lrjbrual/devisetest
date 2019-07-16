@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   # devise_for :users, :path_prefix => 'd'
   # resources :users, :only =>[:show]
   root to: 'pages#home'
-  devise_for :users
+  devise_for :users, controllers: {
+    invitations: "invitations"
+  }
   resources :users, only: :index
   # resource :admins
   # match '/admins',   to: 'admins#index',   via: 'get'
