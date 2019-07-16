@@ -7,6 +7,8 @@ gem 'pg', '~> 0.21'
 gem 'puma'
 gem 'rails', '6.0.0.rc1'
 gem 'redis'
+gem 'devise'
+gem 'devise_invitable'
 
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass', '~> 5.6.1'
@@ -17,6 +19,7 @@ gem 'webpacker'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
+  gem 'letter_opener', '~> 1.7'
 end
 
 group :development, :test do

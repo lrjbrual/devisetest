@@ -1,2 +1,28 @@
 class ApplicationController < ActionController::Base
+  protect_from_forgery with: :exception
+  before_action :authenticate_user!, :set_mailer_host
+
+  before_action :configure_permitted_parameters, if: :devise_controller?
+
+  def configure_permitted_parameters
+  #   # For additional fields in app/views/devise/registrations/new.html.erb
+  #   devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name])
+
+  #   # For additional in app/views/devise/registrations/edit.html.erb
+    devise_parameter_sanitizer.permit(:account_update, keys: [:name])
+    devise_parameter_sanitizer.permit(:accept_invitation, keys: [:email])
+  end
+
+  private
+
+  def current_account
+    @current_account ||= User.find_by_name(params[:id])
+  end
+
+  helper_method :current_account
+
+  # def set_mailer_host
+  #   current_account ? "#{current_account}." : ""
+  #   ActionMailer::Base.default_url_options[:host] = "localhost:3000"
+  # end
 end

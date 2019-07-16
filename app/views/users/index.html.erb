@@ -1,0 +1,32 @@
+<h3>List of Users</h3>
+
+<div class="row">
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Status</th>
+    </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |f| %>
+      <tr>
+        <td> <%= f.name %></td>
+        <td><%= f.email %></td>
+        <td><%= user_status(f) %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br >
+  <br >
+  
+  <h2>Invite User</h3>
+  <%= simple_form_for(User.new, url: user_invitation_path,
+                                html: {class: 'form-inline'}) do %>
+    <%= f.input :email, placehold: 'Email', label: false %>
+    <%= f.button :submit, 'Invite User', class: 'btn-primary' %>
+  <% end %>
+</div>
